@@ -37,4 +37,4 @@ data['rnap_site_score'] = [score_site(energy_matrix, site) for site in data.rnap
 data['rnap_site_no_spacer_score'] = [score_site(energy_matrix_no_spacer, site) for site in data.rnap_site_no_spacer]
 
 # save to text so we can do the modeling in R
-data.to_csv('min_rnap_scores.txt', sep='\t', index=False)
+data.to_csv('../processed_data/min_rnap_scores.txt', sep='\t', index=False)
