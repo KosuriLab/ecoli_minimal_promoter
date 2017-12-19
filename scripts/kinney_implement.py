@@ -15,7 +15,7 @@ with open(filename) as infile:
             energy_matrix.append(dict(zip(nts, probs)))  
 
 # read in library information and expression
-data = pd.read_table('rlp5Min_SplitVariants.txt', sep=' ')
+data = pd.read_table('../processed_data/rlp5Min_SplitVariants.txt', sep=' ')
 
 # grab -41:-1 equivalent sequence for each variant
 # there are 29 bp of initial transcribed region which is at the end of the sequence, 
