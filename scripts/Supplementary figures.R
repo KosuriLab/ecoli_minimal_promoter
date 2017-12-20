@@ -386,6 +386,6 @@ ggplot(min_RNAP_Scores, aes(rnap_site_no_spacer_score, RNA_exp_average, color = 
     scale_color_manual(values = pal, name = '-35 Variant', breaks = legend_ord) +
     annotation_logticks(sides = 'l') + scale_y_log10(limits = c(.03,30)) +
     xlab('RNAP Site Score') + ylab('Expression') +# coord_flip(xlim=c(130,30)) + 
-    scale_x_reverse(lim=c(130,30)) +
+    scale_x_reverse(lim=c(130,0)) +
     ggtitle('Comparing RNAP Binding Energy to Expression') 
 ggsave('../figs/SFX_kinney_matrix.pdf')
