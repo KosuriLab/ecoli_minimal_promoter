@@ -4,8 +4,7 @@ library("dplyr")
 
 pal <- wes_palette("Zissou", 8, type = "continuous")
 
-
-split_exp <- read.table('rlp5Min_SplitVariants.txt', header = T)
+split_exp <- read.table('../processed_data/rlp5Min_SplitVariants.txt', header = T)
 
 split_exp$Minus35  <- with(split_exp, reorder(Minus35,RNA_exp_average, median))
 split_exp$Minus10 <- with(split_exp, reorder(Minus10,-RNA_exp_average, median))
@@ -15,7 +14,10 @@ split_exp$Spacer <- with(split_exp, reorder(Spacer,RNA_exp_average, median))
 #Figure 3A
 split_exp$UP_element <- with(split_exp, reorder(UP_element,RNA_exp_average, max))
 
-ggplot(filter(split_exp, Minus10 == 'consensus10', Minus35 == 'consensus35', Background != 'bg4323949:4324099', Background != 'bg977040:977190'), aes(x = Spacer, y = Background)) + 
+ggplot(filter(split_exp, Minus10 == 'consensus10', 
+              Minus35 == 'consensus35', 
+              Background != 'bg4323949:4324099', 
+              Background != 'bg977040:977190'), aes(x = Spacer, y = Background)) + 
   geom_tile(aes(fill = log10(RNA_exp_average))) + 
   scale_fill_gradientn(colors = pal, limits = c(-1.4,1.6)) + 
   facet_wrap(~UP_element) +
@@ -25,10 +27,13 @@ ggplot(filter(split_exp, Minus10 == 'consensus10', Minus35 == 'consensus35', Bac
         axis.text.x = element_text(size = 6, angle = -90), 
         strip.text = element_text(size = 6),
         panel.spacing = unit(0.40, "lines"))
-ggsave('Figure3A.pdf')
+ggsave('../figs/Figure3A.pdf')
 
 #Figure 3B
-ggplot(filter(split_exp, UP_element == 'gourse-136fold-up', Background != 'bg4323949:4324099', Background != 'bg977040:977190'), aes(x = Spacer, y = Background)) + 
+ggplot(filter(split_exp, 
+              UP_element == 'gourse-136fold-up', 
+              Background != 'bg4323949:4324099', 
+              Background != 'bg977040:977190'), aes(x = Spacer, y = Background)) + 
   geom_tile(aes(fill = log10(RNA_exp_average))) + 
   scale_fill_gradientn(colors = pal, limits = c(-1.4,1.6)) + 
   facet_grid(Minus10 ~ Minus35) +
@@ -38,7 +43,7 @@ ggplot(filter(split_exp, UP_element == 'gourse-136fold-up', Background != 'bg432
         axis.text.x = element_blank(), 
         strip.text = element_blank(),
         panel.spacing = unit(0.10, "lines"))
-ggsave('Figure3B.pdf')
+ggsave('../figs/Figure3B.pdf')
 
 
                                                                                                 
