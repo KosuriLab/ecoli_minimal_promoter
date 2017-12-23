@@ -4,8 +4,9 @@ merge: ../processed_data/min_assembled_reads.txt
 
 map: ../processed_data/min_mappedv2.txt
 	
-
 rna_barcode_count: $(patsubst %,../processed_data/rLP5_min_%.txt,$(BASE))
+
+expression: ../processed_data/revLP5_Min_MOPS_glu_expression.txt
 
 BASE := DNA_rep1.1 DNA_rep1.2 DNA_rep2 DNA_rep3 RNA_rep1.1 RNA_rep1.2 RNA_rep2 RNA_rep3
 
@@ -33,6 +34,10 @@ BASE := DNA_rep1.1 DNA_rep1.2 DNA_rep2 DNA_rep3 RNA_rep1.1 RNA_rep1.2 RNA_rep2 R
 $(patsubst %,../processed_data/rLP5_min_%.txt,$(BASE)): ./Barcode_counting.sh
 
 
+../processed_data/revLP5_Min_MOPS_glu_expression.txt: $(patsubst %,../processed_data/rLP5_min_%.txt,$(BASE))
+	@ Rscript ./Barcode\ Counts\ to\ Expression.R
 
+
+print-%  : ; @echo $* = $($*)
 
 
