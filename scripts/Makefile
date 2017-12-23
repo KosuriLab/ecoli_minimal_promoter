@@ -3,6 +3,7 @@ all: merge map rna_barcode_count
 merge: ../processed_data/min_assembled_reads.txt
 
 map: ../processed_data/min_mappedv2.txt
+	
 
 # merge paired end DNA reads with PEAR
 ../processed_data/min_assembled_reads.txt: ./pearallel.sh
